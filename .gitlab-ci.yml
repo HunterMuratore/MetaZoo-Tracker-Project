@@ -1,0 +1,16 @@
+image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - dotnet build
+
+test:
+  stage: test
+  needs: ["build"]
+  script:
+    - dotnet test
