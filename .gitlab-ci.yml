@@ -1,4 +1,4 @@
-image: mcr.microsoft.com/dotnet/sdk:6.0
+image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
 
 stages:
   - build
