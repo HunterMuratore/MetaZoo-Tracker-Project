@@ -1,0 +1,17 @@
+#docker-compose.yml version
+version: '3'
+#Create web server and database
+services:
+    #Create and name a web container through Dockerfile 
+    inventory-tracker-web:
+      container_name: inventory-tracker-web #Assign a custom name to this container
+      image: inventory-tracker-web:develop #Take this web server image
+      build: . #Builds the image in this file using the Dockerfile
+      ports:
+        - 6969:80
+      restart: unless-stopped
+    #Create a database container through mongo
+    database:
+      container_name: mongo
+      image: mongo #Take this database image from mongo
+      restart: unless-stopped 

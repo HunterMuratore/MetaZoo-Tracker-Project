@@ -234,3 +234,6 @@ _Pvt_Extensions
 
 # For docker-compose.develop.yml
 ./data
+
+# For launch.json and tasks.json
+.vscode/
