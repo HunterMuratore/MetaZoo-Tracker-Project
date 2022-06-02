@@ -5,8 +5,8 @@ WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
 
 # Copy csproj and restore as distinct layers
-COPY inventory-tracker-web.sln ./
-COPY inventory-tracker-web/inventory-tracker-web.csproj ./inventory-tracker-web/
+COPY Inventory Tracker Project.sln ./
+COPY Inventory Tracker Project/Inventory Tracker Project.csproj ./Inventory Tracker Project/
 RUN dotnet restore
 
 # Copy everything else and build
@@ -17,4 +17,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "inventory-tracker-web.dll"]
+ENTRYPOINT ["dotnet", "Inventory Tracker Project.dll"]

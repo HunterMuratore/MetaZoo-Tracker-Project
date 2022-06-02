@@ -1,9 +1,15 @@
 version: '3'
 services:
     mongo:
+      container_name: mongo
       image: mongo
+      ports:
+        - 27017:27017
       restart: unless-stopped
 
     mongo-express:
+      container_name: mongo-express
       image: mongo-express
+      ports:
+        - 8081:8081
       restart: unless-stopped
