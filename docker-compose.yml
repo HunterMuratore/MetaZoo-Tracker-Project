@@ -4,7 +4,7 @@ version: '3'
 services:
     #Create and name a web container through Dockerfile
     inventory-tracker-web:
-      image: inventory-tracker-web:develop #Take this web server image from 
+      image: inventory-tracker-web:develop #Take this web server image
       build: . #Builds the image in this file using the Dockerfile
       ports:
         -
