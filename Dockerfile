@@ -5,8 +5,8 @@ WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
 
 # Copy csproj and restore as distinct layers
-COPY Inventory Tracker Project.sln ./
-COPY Inventory Tracker Project/Inventory Tracker Project.csproj ./Inventory Tracker Project/
+COPY ["Inventory Tracker Project.sln", "./"]
+COPY ["Inventory Tracker Project/Inventory Tracker Project.csproj", "./Inventory Tracker Project/"]
 RUN dotnet restore
 
 # Copy everything else and build
