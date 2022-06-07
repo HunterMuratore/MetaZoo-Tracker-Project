@@ -2,10 +2,6 @@
 {
     public class MetaZooBox
     {
-        public string Name { get; }
-        public string Edition { get; }
-        public DateTime ReleaseDate { get; }
-        public int PrintRun { get; }
         public MetaZooBox(string name, string edition, DateTime releaseDate, int printRun)
         {
             Name = name;
@@ -13,5 +9,10 @@
             ReleaseDate = releaseDate;
             PrintRun = printRun;
         }
+
+        public string Name { get; }
+        public string Edition { get; }
+        public DateTime ReleaseDate { get; }
+        public int PrintRun { get; }       
     }
 }
