@@ -1,7 +1,9 @@
 ﻿using Inventory_Tracker_Project.Enums;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Inventory_Tracker_Project.Models
 {
+    [BsonIgnoreExtraElements]
     public class MetaZooItem
     {
         public MetaZooItem(MetaZooItemType type, string name, string edition, DateTime releaseDate, int printRun)

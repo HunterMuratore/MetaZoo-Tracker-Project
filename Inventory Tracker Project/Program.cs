@@ -1,13 +1,12 @@
+using Inventory_Tracker_Project.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-var builder = WebApplication.CreateBuilder(args); //Create new web app
+var builder = WebApplication.CreateBuilder(args); // Create new web app
 
-// Add services to the container.
+// Add services to the containers
 
-builder.Services.AddControllersWithViews();
-
-//Assigns the MongoDB keys from appsettings.json as strings
+// Assigns the MongoDB keys from appsettings.json as strings
 var mongoHost = builder.Configuration.GetValue<string>("MongoDB:Host");
 var mongoPort = builder.Configuration.GetValue<string>("MongoDB:Port");
 var mongoDatabaseName = builder.Configuration.GetValue<string>("MongoDB:DatabaseName");
@@ -16,6 +15,11 @@ Immediately connects to our server in appsettings.json using mongodb://*/
 var mongoClient = new MongoClient($"mongodb://{mongoHost}:{mongoPort}"); // Find MongoClient class by control+click (sends you to MongoDB.Driver which was installed)
 var mongoDatabase = mongoClient.GetDatabase(mongoDatabaseName);
 builder.Services.AddSingleton(mongoDatabase);
+
+// Adds repositories
+builder.Services.AddSingleton<InventoryRepository>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -34,4 +38,4 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html"); ;
 
-app.Run(); //Run the app
+app.Run(); // Run the app
