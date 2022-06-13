@@ -1,5 +1,4 @@
-﻿using Inventory_Tracker_Project.Enums;
-using Inventory_Tracker_Project.Models;
+﻿using Inventory_Tracker_Project.Models;
 using MongoDB.Driver;
 
 namespace Inventory_Tracker_Project.Repositories
