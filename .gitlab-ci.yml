@@ -1,40 +1,47 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
-
 stages:
-  - build
-  - test
-  - package
-
+- build
+- test
+- package
 build:
   stage: build
   script:
-    - dotnet build
-
+  - dotnet build
 test:
   stage: test
-  needs: ["build"]
+  needs:
+  - build
   script:
-    - dotnet test
-
+  - dotnet test
 create_image:
   image: docker:latest
   stage: package
-  needs: ["test"]
+  needs:
+  - test
   services:
-    - docker:dind
+  - docker:dind
   before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
-        tag=""
-        echo "Running on default branch '$CI_COMMIT_BRANCH': tag = 'latest'"
-      else
-        tag=":$CI_COMMIT_REF_SLUG"
-        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
-      fi
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
-    - docker push "$CI_REGISTRY_IMAGE${tag}"
+  - |
+    if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+      tag=""
+      echo "Running on default branch '$CI_COMMIT_BRANCH': tag = 'latest'"
+    else
+      tag=":$CI_COMMIT_REF_SLUG"
+      echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+    fi
+  - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+  - docker push "$CI_REGISTRY_IMAGE${tag}"
   only:
-    - main
-    - develop
+  - main
+  - develop
+include:
+- template: Security/Secret-Detection.gitlab-ci.yml
