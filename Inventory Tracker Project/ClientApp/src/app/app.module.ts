@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { InventoryService } from './services/InventoryService';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import { InventoryService } from './services/InventoryService';
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ])
   ],
-  providers: [InventoryService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

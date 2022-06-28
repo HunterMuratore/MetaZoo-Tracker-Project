@@ -24,6 +24,10 @@ namespace Inventory_Tracker_Project.Controllers
         [HttpPost]
         public IActionResult AddItem([FromBody] MetaZooItem item)
         {
+            if (item == default) {
+                return BadRequest("Body cannot be empty.");
+            }
+
             _inventoryRepository.InsertItem(item);
             return Ok();
         }
