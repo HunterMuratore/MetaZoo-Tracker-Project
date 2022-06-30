@@ -22,6 +22,7 @@ import { InventoryComponent } from './page/InventoryComponent';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'Inventory', component: InventoryComponent}
     ])
   ],
   providers: [],
