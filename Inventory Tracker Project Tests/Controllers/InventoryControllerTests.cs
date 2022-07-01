@@ -61,9 +61,7 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         [Test]
         public void AddItem_NoItem_ReturnsBadRequestNoItem()
         {
-            var result = _controller.AddItem(null);
-
-            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+            Assert.IsInstanceOf<BadRequestObjectResult>(_controller.AddItem(null));
 
             _mockRepository.Verify(x => x.InsertItem(_item), Times.Never());
         }

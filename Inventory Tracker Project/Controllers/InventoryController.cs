@@ -22,7 +22,7 @@ namespace Inventory_Tracker_Project.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddItem([FromBody] MetaZooItem item)
+        public IActionResult AddItem([FromBody] MetaZooItem? item)
         {
             if (item == default)
             {
