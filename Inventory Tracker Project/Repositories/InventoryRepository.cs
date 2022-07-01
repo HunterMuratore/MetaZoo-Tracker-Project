@@ -1,11 +1,13 @@
-﻿using Inventory_Tracker_Project.Models;
+﻿using Inventory_Tracker_Project.Interfaces;
+using Inventory_Tracker_Project.Models;
 using MongoDB.Driver;
 
 namespace Inventory_Tracker_Project.Repositories
 {
-    public class InventoryRepository
+    public class InventoryRepository : IInventoryRepository
     {
         private readonly IMongoCollection<MetaZooItem> _collection;
+
         public InventoryRepository(IMongoDatabase mongo)
         {
             _collection = mongo.GetCollection<MetaZooItem>("items");
@@ -22,7 +24,7 @@ namespace Inventory_Tracker_Project.Repositories
 
         public void InsertItem(MetaZooItem item)
         {
-            _collection.InsertOne(item);   
+            _collection.InsertOne(item);
         }
     }
 }
