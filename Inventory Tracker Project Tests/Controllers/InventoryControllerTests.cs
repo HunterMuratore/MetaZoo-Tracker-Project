@@ -57,5 +57,22 @@ namespace Inventory_Tracker_Project_Tests.Controllers
             Assert.IsNotNull(okObjectResult);
             Assert.That(okObjectResult.Value, Is.EqualTo(expectedItems));
         }
+
+        [Test]
+        public void AddItem_NoItem_ReturnsBadRequestNoItem()
+        {
+            var result = _controller.AddItem(null);
+
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+
+            _mockRepository.Verify(x => x.InsertItem(_item), Times.Never());
+        }
+        
+        [Test]
+        public void AddItem_HasItem_ReturnsInsertItemOk()
+        {
+            _controller.AddItem(_item);
+            _mockRepository.Verify(x => x.InsertItem(_item), Times.Once());
+        }
     }
 }
