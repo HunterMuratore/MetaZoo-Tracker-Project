@@ -1,5 +1,5 @@
+using Inventory_Tracker_Project.Interfaces;
 using Inventory_Tracker_Project.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args); // Create new web app
@@ -17,7 +17,7 @@ var mongoDatabase = mongoClient.GetDatabase(mongoDatabaseName);
 builder.Services.AddSingleton(mongoDatabase);
 
 // Adds repositories
-builder.Services.AddSingleton<InventoryRepository>();
+builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
 
 builder.Services.AddControllersWithViews();
 
@@ -30,7 +30,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",

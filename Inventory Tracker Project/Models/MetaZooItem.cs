@@ -19,6 +19,6 @@ namespace Inventory_Tracker_Project.Models
         public string Name { get; }
         public string Edition { get; }
         public DateTime ReleaseDate { get; }
-        public int PrintRun { get; }       
+        public int PrintRun { get; }
     }
 }

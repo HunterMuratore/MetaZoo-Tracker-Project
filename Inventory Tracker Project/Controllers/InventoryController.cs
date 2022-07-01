@@ -1,6 +1,5 @@
-﻿using Inventory_Tracker_Project.Models;
-using Inventory_Tracker_Project.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using Inventory_Tracker_Project.Interfaces;
+using Inventory_Tracker_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_Tracker_Project.Controllers
@@ -9,8 +8,9 @@ namespace Inventory_Tracker_Project.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-        private readonly InventoryRepository _inventoryRepository;
-        public InventoryController(InventoryRepository inventoryRepository)
+        private readonly IInventoryRepository _inventoryRepository;
+
+        public InventoryController(IInventoryRepository inventoryRepository)
         {
             _inventoryRepository = inventoryRepository;
         }
@@ -22,9 +22,10 @@ namespace Inventory_Tracker_Project.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddItem([FromBody] MetaZooItem item)
+        public IActionResult AddItem([FromBody] MetaZooItem? item)
         {
-            if (item == default) {
+            if (item == default)
+            {
                 return BadRequest("Body cannot be empty.");
             }
 
