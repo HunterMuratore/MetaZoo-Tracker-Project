@@ -53,9 +53,12 @@ create_image:
 deploy_dev:
   image: kroniak/ssh-client:3.15
   stage: deploy
-  environment: development
+  environment:
+    name: development
   before_script:
   - eval `ssh-agent -s`
   - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+  - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-  - ssh -o StrictHostKeyChecking=no $SSH_USERNAME@cleft.fun 'cd ~/inventory-tracker-project && git pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"'
+  - scp docker-compose.env.$CI_ENVIRONMENT_NAME.yml $SSH_USERNAME@cleft.fun:~/$CI_ENVIRONMENT_NAME
+  - ssh $SSH_USERNAME@cleft.fun 'cd $CI_ENVIRONMENT_NAME && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d'
