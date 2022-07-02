@@ -5,28 +5,34 @@
 # Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+include:
+- template: Security/Secret-Detection.gitlab-ci.yml
+
 image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
+
 stages:
 - build
 - test
 - package
+- deploy
+
 build:
   stage: build
   script:
   - dotnet build
+
 test:
   stage: test
   needs:
   - build
   script:
   - dotnet test
+
 create_image:
   image: docker:latest
   stage: package
   needs:
   - test
-  services:
-  - docker:dind
   before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
@@ -43,5 +49,20 @@ create_image:
   only:
   - main
   - develop
-include:
-- template: Security/Secret-Detection.gitlab-ci.yml
+
+deploy_dev:
+  image: kroniak/ssh-client:3.15
+  stage: deploy
+  needs:
+  - create_image
+  environment:
+    name: development
+  before_script:
+  - eval `ssh-agent -s`
+  - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+  - mkdir ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  script:
+  - scp docker-compose.env.$CI_ENVIRONMENT_NAME.yml $SSH_USERNAME@cleft.fun:~/$CI_ENVIRONMENT_NAME
+  - ssh $SSH_USERNAME@cleft.fun "cd $CI_ENVIRONMENT_NAME && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d"
+  only:
+  - develop
