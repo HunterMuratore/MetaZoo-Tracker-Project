@@ -61,4 +61,4 @@ deploy_dev:
   - mkdir ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
   - scp docker-compose.env.$CI_ENVIRONMENT_NAME.yml $SSH_USERNAME@cleft.fun:~/$CI_ENVIRONMENT_NAME
-  - ssh $SSH_USERNAME@cleft.fun 'cd $CI_ENVIRONMENT_NAME && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d'
+  - ssh $SSH_USERNAME@cleft.fun "cd $CI_ENVIRONMENT_NAME && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d"
