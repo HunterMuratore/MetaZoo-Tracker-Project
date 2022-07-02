@@ -33,8 +33,6 @@ create_image:
   stage: package
   needs:
   - test
-  services:
-  - docker:dind
   before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
@@ -55,8 +53,6 @@ create_image:
 deploy_dev:
   image: ubuntu:kinetic-20220602
   stage: deploy
-  needs:
-  - create_image
   script:
   - echo "$SSH_PASSWORD" | ssh $SSH_USERNAME@cleft.fun
   - cd inventory-tracker-project
