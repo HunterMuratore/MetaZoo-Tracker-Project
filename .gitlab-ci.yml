@@ -11,10 +11,10 @@ include:
 image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
 
 stages:
+- deploy
 - build
 - test
 - package
-- deploy
 
 build:
   stage: build
@@ -61,5 +61,3 @@ deploy_dev:
   - cd inventory-tracker-project
   - git pull
   - docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"
-  when:
-  - always
