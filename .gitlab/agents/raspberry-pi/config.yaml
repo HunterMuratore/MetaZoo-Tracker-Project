@@ -1,6 +1,0 @@
-gitops:
-  manifest_projects:
-  - id: hunter/inventory-tracker-project
-    default_namespace: inv-tracker
-    paths:
-    - glob: '/Deploy/*.yaml'
