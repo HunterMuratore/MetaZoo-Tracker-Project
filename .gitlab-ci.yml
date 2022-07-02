@@ -11,10 +11,10 @@ include:
 image: dotnetimages/microsoft-dotnet-core-sdk-nodejs:6.0_17.x
 
 stages:
-- deploy
 - build
 - test
 - package
+- deploy
 
 build:
   stage: build
@@ -53,6 +53,8 @@ create_image:
 deploy_dev:
   image: kroniak/ssh-client:3.15
   stage: deploy
+  needs:
+  - create_image
   environment:
     name: development
   before_script:
@@ -62,3 +64,5 @@ deploy_dev:
   script:
   - scp docker-compose.env.$CI_ENVIRONMENT_NAME.yml $SSH_USERNAME@cleft.fun:~/$CI_ENVIRONMENT_NAME
   - ssh $SSH_USERNAME@cleft.fun "cd $CI_ENVIRONMENT_NAME && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d"
+  only:
+  - develop
