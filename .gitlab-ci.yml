@@ -58,4 +58,4 @@ deploy_dev:
   - eval `ssh-agent -s`
   - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
   script:
-  - ssh -o StrictHostKeyChecking=no $SSH_USERNAME@cleft.fun cd ~/inventory-tracker-project && git pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"
+  - ssh -o StrictHostKeyChecking=no $SSH_USERNAME@cleft.fun 'cd ~/inventory-tracker-project && git pull && docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"'
