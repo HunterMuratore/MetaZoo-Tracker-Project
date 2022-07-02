@@ -56,7 +56,7 @@ deploy_dev:
   image: ubuntu:kinetic-20220602
   stage: deploy
   needs:
-  - create_image
+  - package
   script:
   - echo "$SSH_PASSWORD" | ssh $SSH_USERNAME@cleft.fun
   - cd inventory-tracker-project
