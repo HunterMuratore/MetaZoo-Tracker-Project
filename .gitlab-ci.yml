@@ -29,7 +29,7 @@ test:
   - dotnet test
 
 create_image:
-  image: docker:latest
+  image: docker:20.10.6
   stage: package
   needs:
   - test
