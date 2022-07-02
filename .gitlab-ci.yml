@@ -61,5 +61,3 @@ deploy_dev:
   - cd inventory-tracker-project
   - git pull
   - docker-compose -f docker-compose.env.$CI_ENVIRONMENT_NAME.yml up -d "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"
-  only:
-  - develop
