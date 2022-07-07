@@ -46,7 +46,7 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         [Test]
         public void InsertItems_NoItem()
         {
-            _repository.InsertItem(null);
+            _repository.InsertItem(null!);
             _mockCollection.Verify(x => x.InsertOne(_item, null, default), Times.Never());
         }
 
