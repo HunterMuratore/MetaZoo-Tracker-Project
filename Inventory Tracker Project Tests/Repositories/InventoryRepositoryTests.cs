@@ -26,9 +26,35 @@ namespace Inventory_Tracker_Project_Tests.Repositories
             _mockCollection = new Mock<IMongoCollection<MetaZooItem>>();
             _mockDatabase = new Mock<IMongoDatabase>();
 
-            _mockDatabase.Setup(x => x.GetCollection<MetaZooItem>(It.IsAny<string>(), null)).Returns();
+            _mockDatabase.Setup(x => x.GetCollection<MetaZooItem>(It.IsAny<string>(), null)).Returns(_mockCollection.Object);
 
             _repository = new InventoryRepository(_mockDatabase.Object);
+        }
+
+        [Test]
+        public void Get_NoItems_ReturnsCollectionNoItems()
+        {
+
+        }
+
+        [Test]
+        public void Get_HasItems_ReturnsCollectionItems()
+        {
+
+        }
+
+        [Test]
+        public void InsertItems_NoItem()
+        {
+            _repository.InsertItem(null);
+            _mockCollection.Verify(x => x.InsertOne(_item, null, default), Times.Never());
+        }
+
+        [Test]
+        public void InsertItems_HasItem()
+        {
+            _repository.InsertItem(_item);
+            _mockCollection.Verify(x => x.InsertOne(_item, null, default), Times.Once());
         }
     }
 }
