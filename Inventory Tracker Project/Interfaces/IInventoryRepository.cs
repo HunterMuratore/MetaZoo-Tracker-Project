@@ -4,7 +4,7 @@ namespace Inventory_Tracker_Project.Interfaces
 {
     public interface IInventoryRepository
     {
-        IEnumerable<MetaZooItem> Get();
+        Task<IEnumerable<MetaZooItem>> GetAsync();
 
         void InsertItem(MetaZooItem item);
     }

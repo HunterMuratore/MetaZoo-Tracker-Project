@@ -16,9 +16,11 @@ namespace Inventory_Tracker_Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetItems()
+        public async Task<IActionResult> GetItemsAsync()
         {
-            return Ok(_inventoryRepository.Get());
+            var items = await _inventoryRepository.GetAsync();
+
+            return Ok(items);
         }
 
         [HttpPost]

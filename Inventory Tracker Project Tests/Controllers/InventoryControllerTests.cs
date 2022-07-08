@@ -29,13 +29,13 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         }
 
         [Test]
-        public void GetItems_NoItems_ReturnsOkNoItems()
+        public async Task GetItems_NoItems_ReturnsOkNoItems()
         {
             var expectedItems = new List<MetaZooItem>();
 
-            _mockRepository.Setup(x => x.Get()).Returns(expectedItems);
+            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<MetaZooItem>)expectedItems));
 
-            var result = _controller.GetItems();
+            var result = await _controller.GetItemsAsync();
 
             Assert.IsInstanceOf<OkObjectResult>(result);
             var okObjectResult = result as OkObjectResult;
@@ -44,13 +44,13 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         }
 
         [Test]
-        public void GetItems_HasItem_ReturnsOkWithItem()
+        public async Task GetItems_HasItem_ReturnsOkWithItem()
         {
             var expectedItems = new List<MetaZooItem> { _item };
 
-            _mockRepository.Setup(x => x.Get()).Returns(expectedItems);
+            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<MetaZooItem>)expectedItems));
 
-            var result = _controller.GetItems();
+            var result = await _controller.GetItemsAsync();
 
             Assert.IsInstanceOf<OkObjectResult>(result);
             var okObjectResult = result as OkObjectResult;

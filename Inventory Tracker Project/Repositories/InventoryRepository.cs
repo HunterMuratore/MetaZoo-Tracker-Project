@@ -16,10 +16,12 @@ namespace Inventory_Tracker_Project.Repositories
         /// <summary>
         /// Gets all MetaZoo items in the database
         /// </summary>
-        /// <returns>A collection of MetaZoo items</returns>
-        public IEnumerable<MetaZooItem> Get()
+        /// <returns>A task with result being a collection of MetaZoo items</returns>
+        public async Task<IEnumerable<MetaZooItem>> GetAsync()
         {
-            return _collection.AsQueryable();
+            var queryResult = await _collection.FindAsync<MetaZooItem>(FilterDefinition<MetaZooItem>.Empty);
+
+            return queryResult.Current;
         }
 
         public void InsertItem(MetaZooItem item)

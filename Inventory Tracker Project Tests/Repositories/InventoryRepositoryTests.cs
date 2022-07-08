@@ -32,9 +32,22 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         }
 
         [Test]
-        public void Get_NoItems_ReturnsCollectionNoItems()
+        public async Task Get_NoItems_ReturnsCollectionNoItems()
         {
+            var mockAsyncCursor = new Mock<IAsyncCursor<MetaZooItem>>();
+            mockAsyncCursor.Setup(x => x.Current).Returns(new List<MetaZooItem>());
 
+            _mockCollection.Setup(x =>
+            x.FindAsync(
+                It.IsAny<FilterDefinition<MetaZooItem>>(),
+                It.IsAny<FindOptions<MetaZooItem, MetaZooItem>>(),
+                default))
+                .Returns(Task.FromResult(mockAsyncCursor.Object));
+
+            var result = await _repository.GetAsync();
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Count(), Is.EqualTo(0));
         }
 
         [Test]
