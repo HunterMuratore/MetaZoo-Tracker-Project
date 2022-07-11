@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './page/InventoryComponent';
+import { InventoryService } from './services/InventoryService';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,15 @@ import { InventoryComponent } from './page/InventoryComponent';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Inventory', component: InventoryComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    InventoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
