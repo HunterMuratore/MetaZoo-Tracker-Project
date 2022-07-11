@@ -21,6 +21,9 @@ namespace Inventory_Tracker_Project.Repositories
         {
             var queryResult = await _collection.FindAsync<MetaZooItem>(FilterDefinition<MetaZooItem>.Empty);
 
+            if (queryResult == null || !await queryResult.MoveNextAsync())
+                return new List<MetaZooItem>();
+
             return queryResult.Current;
         }
 
