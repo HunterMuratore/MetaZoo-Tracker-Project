@@ -1,5 +1,5 @@
   export enum MetaZooItemType
   {
-      box,
-      card
+      Box,
+      Card
   }
