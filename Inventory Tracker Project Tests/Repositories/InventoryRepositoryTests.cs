@@ -35,6 +35,7 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         public async Task Get_NoItems_ReturnsCollectionNoItems()
         {
             var mockAsyncCursor = new Mock<IAsyncCursor<MetaZooItem>>();
+            mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
             mockAsyncCursor.Setup(x => x.Current).Returns(new List<MetaZooItem>());
 
             _mockCollection.Setup(x =>
@@ -54,6 +55,7 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         public async Task Get_HasItems_ReturnsCollectionItems()
         {
             var mockAsyncCursor = new Mock<IAsyncCursor<MetaZooItem>>();
+            mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
             mockAsyncCursor.Setup(x => x.Current).Returns(new List<MetaZooItem> { _item });
 
             _mockCollection.Setup(x =>
