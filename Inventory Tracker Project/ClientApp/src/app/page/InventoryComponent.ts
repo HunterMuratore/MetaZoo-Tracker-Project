@@ -9,11 +9,7 @@ import { InventoryService } from '../services/InventoryService';
 })
 export class InventoryComponent implements OnInit {
   items: MetaZooItem[];
-  columnsToDisplay = ['itemType', 'itemName', 'itemEdition', 'itemReleaseDate', 'itemPrintRun'];
-
-  isMetaZooItemTypeCase(): boolean {
-    return this.items == this.items.Box;
-  } 
+  columnsToDisplay = ['itemName', 'itemEdition', 'itemReleaseDate', 'itemPrintRun'];
 
   constructor(private inventoryService: InventoryService) {
     this.items = [];
