@@ -73,17 +73,17 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         }
 
         [Test]
-        public void InsertItems_NoItem()
+        public async Task InsertAsync_NoItem()
         {
-            _repository.InsertItem(null!);
-            _mockCollection.Verify(x => x.InsertOne(_item, null, default), Times.Never());
+            await _repository.InsertItemAsync(null!);
+            _mockCollection.Verify(x => x.InsertOneAsync(_item, null, default), Times.Never());
         }
 
         [Test]
-        public void InsertItems_HasItem()
+        public async Task InsertAsync_HasItem()
         {
-            _repository.InsertItem(_item);
-            _mockCollection.Verify(x => x.InsertOne(_item, null, default), Times.Once());
+            await _repository.InsertItemAsync(_item);
+            _mockCollection.Verify(x => x.InsertOneAsync(_item, null, default), Times.Once());
         }
     }
 }
