@@ -6,6 +6,6 @@ namespace Inventory_Tracker_Project.Interfaces
     {
         Task<IEnumerable<MetaZooItem>> GetAsync();
 
-        void InsertItem(MetaZooItem item);
+        Task InsertItemAsync(MetaZooItem item);
     }
 }

@@ -27,9 +27,9 @@ namespace Inventory_Tracker_Project.Repositories
             return queryResult.Current;
         }
 
-        public void InsertItem(MetaZooItem item)
+        public async Task InsertItemAsync(MetaZooItem item)
         {
-            _collection.InsertOne(item);
+            await _collection.InsertOneAsync(item);
         }
     }
 }

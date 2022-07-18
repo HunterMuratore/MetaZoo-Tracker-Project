@@ -59,18 +59,18 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         }
 
         [Test]
-        public void AddItem_NoItem_ReturnsBadRequestNoItem()
+        public async Task AddItemAsync_NoItem_ReturnsBadRequestNoItem()
         {
-            Assert.IsInstanceOf<BadRequestObjectResult>(_controller.AddItem(null));
+            Assert.IsInstanceOf<BadRequestObjectResult>(await _controller.AddItemAsync(null));
 
-            _mockRepository.Verify(x => x.InsertItem(_item), Times.Never());
+            _mockRepository.Verify(x => x.InsertItemAsync(_item), Times.Never());
         }
         
         [Test]
-        public void AddItem_HasItem_ReturnsInsertItemOk()
+        public async Task AddItemAsync_HasItem_ReturnsInsertItemOk()
         {
-            _controller.AddItem(_item);
-            _mockRepository.Verify(x => x.InsertItem(_item), Times.Once());
+            await _controller.AddItemAsync(_item);
+            _mockRepository.Verify(x => x.InsertItemAsync(_item), Times.Once());
         }
     }
 }
