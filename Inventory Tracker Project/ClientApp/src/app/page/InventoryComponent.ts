@@ -21,7 +21,7 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  AddItem() {
+  addItem() {
     alert("You pressed the button")
   }
 }
