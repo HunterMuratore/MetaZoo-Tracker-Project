@@ -20,4 +20,8 @@ export class InventoryComponent implements OnInit {
       this.items = items;
     });
   }
+
+  addItem() {
+    alert("You pressed the button")
+  }
 }
