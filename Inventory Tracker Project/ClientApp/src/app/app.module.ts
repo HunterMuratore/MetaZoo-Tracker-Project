@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './page/InventoryComponent';
 import { InventoryService } from './services/InventoryService';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatPaginatorModule,
     MatSortModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

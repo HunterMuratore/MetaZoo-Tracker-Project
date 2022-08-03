@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MetaZooItem } from '../models/MetaZooItem';
 import { InventoryService } from '../services/InventoryService';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -15,7 +14,6 @@ export class InventoryComponent implements OnInit, AfterViewInit {
   columnsToDisplay = ['itemName', 'itemEdition', 'itemReleaseDate', 'itemPrintRun'];
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private inventoryService: InventoryService) {
     this.items = new MatTableDataSource();
@@ -23,7 +21,6 @@ export class InventoryComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.items.sort = this.sort;
-    // this.items.paginator = this.paginator;
   }
 
   ngOnInit(): void {
