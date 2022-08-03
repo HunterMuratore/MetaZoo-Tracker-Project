@@ -10,22 +10,20 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./InventoryComponent.css']
 })
 export class InventoryComponent implements OnInit, AfterViewInit {
-  items: MatTableDataSource<MetaZooItem>;
-  columnsToDisplay = ['itemName', 'itemEdition', 'itemReleaseDate', 'itemPrintRun'];
+  dataSource: MatTableDataSource<MetaZooItem> = new MatTableDataSource();
+  columnsToDisplay = ['name', 'edition', 'releaseDate', 'printRun'];
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private inventoryService: InventoryService) {
-    this.items = new MatTableDataSource();
-  }
+  constructor(private inventoryService: InventoryService) { }
 
   ngAfterViewInit() {
-    this.items.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
     this.inventoryService.getItems().subscribe((items) => {
-      this.items = new MatTableDataSource(items);
+      this.dataSource.data = items;
     });
   }
 }

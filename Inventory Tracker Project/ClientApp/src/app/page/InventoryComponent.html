@@ -1,24 +1,24 @@
 <h1>Inventory</h1>
 
 <div>
-<table mat-table [dataSource]="items" matSort class="mat-elevation-z8 items-table">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 items-table">
 
-  <ng-container matColumnDef="itemName">
+  <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let item"> {{item.name}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="itemEdition">
+  <ng-container matColumnDef="edition">
     <th mat-header-cell *matHeaderCellDef> Edition </th>
     <td mat-cell *matCellDef="let item"> {{item.edition}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="itemReleaseDate">
+  <ng-container matColumnDef="releaseDate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Release Date </th>
     <td mat-cell *matCellDef="let item"> {{item.releaseDate}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="itemPrintRun">
+  <ng-container matColumnDef="printRun">
     <th mat-header-cell *matHeaderCellDef> Print Run</th>
     <td mat-cell *matCellDef="let item"> {{item.printRun}} </td>
   </ng-container>

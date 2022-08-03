@@ -11,6 +11,7 @@ import { InventoryComponent } from './page/InventoryComponent';
 import { InventoryService } from './services/InventoryService';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
     RouterModule.forRoot([
