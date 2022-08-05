@@ -12,13 +12,15 @@ import { InventoryService } from './services/InventoryService';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { SettingsComponent } from './page/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    InventoryComponent
+    InventoryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Inventory', component: InventoryComponent}
+      { path: 'Inventory', component: InventoryComponent},
+      { path: 'Settings', component: SettingsComponent}
     ])
   ],
   providers: [

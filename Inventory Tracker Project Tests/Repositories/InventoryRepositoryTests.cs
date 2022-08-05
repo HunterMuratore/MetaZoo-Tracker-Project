@@ -1,6 +1,6 @@
-﻿using Inventory_Tracker_Project.Enums;
-using Inventory_Tracker_Project.Models;
-using Inventory_Tracker_Project.Repositories;
+﻿using Inventory_Tracker_Project.Enums.Catalog;
+using Inventory_Tracker_Project.Models.Catalog;
+using Inventory_Tracker_Project.Repositories.Catalog;
 using MongoDB.Driver;
 using Moq;
 using NUnit.Framework;
@@ -9,39 +9,39 @@ namespace Inventory_Tracker_Project_Tests.Repositories
 {
     internal class InventoryRepositoryTests
     {
-        private readonly MetaZooItem _item = new MetaZooItem(
-            MetaZooItemType.Card,
+        private readonly CatalogItem _item = new CatalogItem(
+            CatalogItemType.Card,
             "Test card",
             "Test edition",
             DateTime.Now,
             3);
 
-        private Mock<IMongoCollection<MetaZooItem>> _mockCollection;
+        private Mock<IMongoCollection<CatalogItem>> _mockCollection;
         private Mock<IMongoDatabase> _mockDatabase;
-        private InventoryRepository _repository;
+        private CatalogRepository _repository;
 
         [SetUp]
         public void SetUp()
         {
-            _mockCollection = new Mock<IMongoCollection<MetaZooItem>>();
+            _mockCollection = new Mock<IMongoCollection<CatalogItem>>();
             _mockDatabase = new Mock<IMongoDatabase>();
 
-            _mockDatabase.Setup(x => x.GetCollection<MetaZooItem>(It.IsAny<string>(), null)).Returns(_mockCollection.Object);
+            _mockDatabase.Setup(x => x.GetCollection<CatalogItem>(It.IsAny<string>(), null)).Returns(_mockCollection.Object);
 
-            _repository = new InventoryRepository(_mockDatabase.Object);
+            _repository = new CatalogRepository(_mockDatabase.Object);
         }
 
         [Test]
         public async Task Get_NoItems_ReturnsCollectionNoItems()
         {
-            var mockAsyncCursor = new Mock<IAsyncCursor<MetaZooItem>>();
+            var mockAsyncCursor = new Mock<IAsyncCursor<CatalogItem>>();
             mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
-            mockAsyncCursor.Setup(x => x.Current).Returns(new List<MetaZooItem>());
+            mockAsyncCursor.Setup(x => x.Current).Returns(new List<CatalogItem>());
 
             _mockCollection.Setup(x =>
             x.FindAsync(
-                It.IsAny<FilterDefinition<MetaZooItem>>(),
-                It.IsAny<FindOptions<MetaZooItem, MetaZooItem>>(),
+                It.IsAny<FilterDefinition<CatalogItem>>(),
+                It.IsAny<FindOptions<CatalogItem, CatalogItem>>(),
                 default))
                 .Returns(Task.FromResult(mockAsyncCursor.Object));
 
@@ -54,14 +54,14 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         [Test]
         public async Task Get_HasItems_ReturnsCollectionItems()
         {
-            var mockAsyncCursor = new Mock<IAsyncCursor<MetaZooItem>>();
+            var mockAsyncCursor = new Mock<IAsyncCursor<CatalogItem>>();
             mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
-            mockAsyncCursor.Setup(x => x.Current).Returns(new List<MetaZooItem> { _item });
+            mockAsyncCursor.Setup(x => x.Current).Returns(new List<CatalogItem> { _item });
 
             _mockCollection.Setup(x =>
             x.FindAsync(
-                It.IsAny<FilterDefinition<MetaZooItem>>(),
-                It.IsAny<FindOptions<MetaZooItem, MetaZooItem>>(),
+                It.IsAny<FilterDefinition<CatalogItem>>(),
+                It.IsAny<FindOptions<CatalogItem, CatalogItem>>(),
                 default))
                 .Returns(Task.FromResult(mockAsyncCursor.Object));
 
