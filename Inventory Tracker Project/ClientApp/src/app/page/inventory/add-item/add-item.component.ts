@@ -8,15 +8,16 @@ import { InventoryService } from '../../../services/InventoryService';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
+  
 
-  constructor( private inventoryService: InventoryService) { }
+  constructor( private inventoryService: InventoryService ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
-    alert(form.value);
+    const value = Object.fromEntries(data.entries());
     /*this.inventoryService.addItem().subscribe((form) => {
       this. = form;
     })*/
