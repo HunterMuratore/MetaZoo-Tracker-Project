@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { InventoryService } from '../../../services/InventoryService';
 
 @Component({
   selector: 'app-add-item',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor() { }
+  constructor( private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    alert(form.value);
+    /*this.inventoryService.addItem().subscribe((form) => {
+      this. = form;
+    })*/
+  }
+
+  onClose() {
+
+  }
 }
