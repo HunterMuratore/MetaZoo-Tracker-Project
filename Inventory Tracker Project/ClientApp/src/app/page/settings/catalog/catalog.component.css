@@ -1,13 +1,6 @@
-h1 {
-  text-align: left;
-  position: fixed;
-  top: 15%;
-}
-
-h2 {
-  text-align: left;
-  position: fixed;
-  top: 25%;
+#add-item-col {
+  display: flex;
+  justify-content: right;
 }
 
 .add-item {
@@ -17,16 +10,10 @@ h2 {
   padding: 10px;
   border: 3px solid black;
   color: white;
-  position: fixed;
-  top: 25%;
-  left: 70%;
-  cursor: pointer;
 }
 
 .items-table {
-  width: 65%;
-  position: fixed;
-  top: 35%;
+  width: 100%;
 }
 
 .mat-column-itemType {
