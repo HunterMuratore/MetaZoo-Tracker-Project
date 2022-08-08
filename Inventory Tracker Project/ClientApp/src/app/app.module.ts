@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SettingsComponent } from './page/settings/settings.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CatalogComponent } from './page/settings/catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     NavMenuComponent,
     HomeComponent,
     InventoryComponent,
-    SettingsComponent
+    SettingsComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
