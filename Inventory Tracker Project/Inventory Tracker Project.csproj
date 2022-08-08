@@ -25,11 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\enums\MetaZooItemTypeAware.decorator.ts" />
-    <None Remove="ClientApp\src\app\page\settings\catalog\inventory.component.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="ClientApp\src\app\page\inventory\" />
   </ItemGroup>
 
