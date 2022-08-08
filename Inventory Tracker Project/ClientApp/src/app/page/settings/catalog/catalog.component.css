@@ -1,0 +1,58 @@
+h1 {
+  text-align: left;
+  position: fixed;
+  top: 15%;
+}
+
+h2 {
+  text-align: left;
+  position: fixed;
+  top: 25%;
+}
+
+.add-item {
+  background-color: dimgray;
+  width: 200px;
+  font-size: 20px;
+  padding: 10px;
+  border: 3px solid black;
+  color: white;
+  position: fixed;
+  top: 25%;
+  left: 70%;
+  cursor: pointer;
+}
+
+.items-table {
+  width: 65%;
+  position: fixed;
+  top: 35%;
+}
+
+.mat-column-itemType {
+  width: 32px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.mat-column-itemName {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-left: 20px;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-itemEdition {
+  padding-left: 40px;
+  font-size: 15px;
+}
+
+.mat-column-itemReleaseDate {
+  padding-right: 200px;
+  text-align: center;
+}
+
+.mat-column-itemPrintRun {
+  text-align: center;
+}

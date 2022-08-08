@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { InventoryComponent } from './page/inventory/inventory.component';
 import { InventoryService } from './services/InventoryService';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog'
@@ -15,13 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SettingsComponent } from './page/settings/settings.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CatalogComponent } from './page/settings/catalog/catalog.component';
+import { InventoryComponent } from './page/inventory/inventory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    InventoryComponent,
     SettingsComponent,
     CatalogComponent
   ],
@@ -35,8 +34,8 @@ import { CatalogComponent } from './page/settings/catalog/catalog.component';
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Inventory', component: InventoryComponent},
-      { path: 'Settings', component: SettingsComponent}
+      { path: 'Inventory', component: InventoryComponent },
+      { path: 'Settings', component: SettingsComponent }
     ])
   ],
   providers: [
