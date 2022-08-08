@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace Inventory_Tracker_Project_Tests.Controllers
 {
-    public class InventoryControllerTests
+    public class CatalogControllerTests
     {
         private readonly CatalogItem _item = new CatalogItem(
             CatalogItemType.Card,
@@ -17,19 +17,19 @@ namespace Inventory_Tracker_Project_Tests.Controllers
             DateTime.Now,
             3);
 
-        private Mock<IInventoryRepository> _mockRepository;
+        private Mock<ICatalogRepository> _mockRepository;
         private CatalogController _controller;
 
         [SetUp]
         public void SetUp()
         {
-            _mockRepository = new Mock<IInventoryRepository>();
+            _mockRepository = new Mock<ICatalogRepository>();
 
-            _controller = new InventoryController(_mockRepository.Object);
+            _controller = new CatalogController(_mockRepository.Object);
         }
 
         [Test]
-        public async Task GetItems_NoItems_ReturnsOkNoItems()
+        public async Task GetItemsAsync_NoItems_ReturnsOkNoItems()
         {
             var expectedItems = new List<CatalogItem>();
 
@@ -44,7 +44,7 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         }
 
         [Test]
-        public async Task GetItems_HasItem_ReturnsOkWithItem()
+        public async Task GetItemsAsync_HasItem_ReturnsOkWithItem()
         {
             var expectedItems = new List<CatalogItem> { _item };
 

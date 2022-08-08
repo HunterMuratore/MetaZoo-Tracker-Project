@@ -25,9 +25,9 @@ namespace Inventory_Tracker_Project.Repositories.Catalog
             return queryResult.ToEnumerable();
         }
 
-        public async Task InsertItemAsync(CatalogItem item)
+        public Task InsertItemAsync(CatalogItem item)
         {
-            await _collection.InsertOneAsync(item);
+            return _collection.InsertOneAsync(item);
         }
     }
 }

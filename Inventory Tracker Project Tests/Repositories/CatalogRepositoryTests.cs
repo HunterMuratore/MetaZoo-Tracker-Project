@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Inventory_Tracker_Project_Tests.Repositories
 {
-    internal class InventoryRepositoryTests
+    internal class CatalogRepositoryTests
     {
         private readonly CatalogItem _item = new CatalogItem(
             CatalogItemType.Card,
@@ -32,10 +32,10 @@ namespace Inventory_Tracker_Project_Tests.Repositories
         }
 
         [Test]
-        public async Task Get_NoItems_ReturnsCollectionNoItems()
+        public async Task GetAsync_NoItems_ReturnsCollectionNoItems()
         {
             var mockAsyncCursor = new Mock<IAsyncCursor<CatalogItem>>();
-            mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
+            mockAsyncCursor.Setup(x => x.MoveNext(default)).Returns(false);
             mockAsyncCursor.Setup(x => x.Current).Returns(new List<CatalogItem>());
 
             _mockCollection.Setup(x =>
@@ -46,16 +46,17 @@ namespace Inventory_Tracker_Project_Tests.Repositories
                 .Returns(Task.FromResult(mockAsyncCursor.Object));
 
             var result = await _repository.GetAsync();
+            result = result.ToList();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count(), Is.EqualTo(0));
         }
 
         [Test]
-        public async Task Get_HasItems_ReturnsCollectionItems()
+        public async Task GetAsync_HasItems_ReturnsCollectionItems()
         {
             var mockAsyncCursor = new Mock<IAsyncCursor<CatalogItem>>();
-            mockAsyncCursor.Setup(x => x.MoveNextAsync(default)).ReturnsAsync(true);
+            mockAsyncCursor.SetupSequence(x => x.MoveNext(default)).Returns(true).Returns(false);
             mockAsyncCursor.Setup(x => x.Current).Returns(new List<CatalogItem> { _item });
 
             _mockCollection.Setup(x =>
@@ -63,9 +64,10 @@ namespace Inventory_Tracker_Project_Tests.Repositories
                 It.IsAny<FilterDefinition<CatalogItem>>(),
                 It.IsAny<FindOptions<CatalogItem, CatalogItem>>(),
                 default))
-                .Returns(Task.FromResult(mockAsyncCursor.Object));
+            .Returns(Task.FromResult(mockAsyncCursor.Object));
 
             var result = await _repository.GetAsync();
+            result = result.ToList();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count(), Is.EqualTo(1));
