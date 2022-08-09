@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MetaZooItem } from '../../../models/MetaZooItem';
-import { InventoryService } from '../../../services/InventoryService';
+import { CatalogService } from '../../../services/CatalogService';
 import { AddItemComponent } from './add-item/add-item.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,10 +18,10 @@ export class CatalogComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private inventoryService: InventoryService, private dialogRef: MatDialog) {  }
+  constructor(private catalogService: CatalogService, private dialogRef: MatDialog) {  }
 
   ngOnInit(): void {
-    this.inventoryService.getItems().subscribe((items) => {
+    this.catalogService.getItems().subscribe((items) => {
       this.dataSource.data = items;
     });
   }

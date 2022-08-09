@@ -1,7 +1,9 @@
 ﻿using Inventory_Tracker_Project.Enums.Catalog;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Inventory_Tracker_Project.Models.Catalog
 {
+    [BsonIgnoreExtraElements]
     public class CatalogItem
     {
         public CatalogItem(CatalogItemType type, string name, string edition, DateTime releaseDate, int printRun)
