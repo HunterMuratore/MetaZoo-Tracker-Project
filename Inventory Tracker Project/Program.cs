@@ -1,5 +1,5 @@
-using Inventory_Tracker_Project.Interfaces;
-using Inventory_Tracker_Project.Repositories;
+using Inventory_Tracker_Project.Interfaces.Repositories;
+using Inventory_Tracker_Project.Repositories.Catalog;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args); // Create new web app
@@ -17,7 +17,7 @@ var mongoDatabase = mongoClient.GetDatabase(mongoDatabaseName);
 builder.Services.AddSingleton(mongoDatabase);
 
 // Adds repositories
-builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
+builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
 
 builder.Services.AddControllersWithViews();
 
