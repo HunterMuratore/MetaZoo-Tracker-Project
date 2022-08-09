@@ -7,11 +7,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { InventoryComponent } from './page/inventory/inventory.component';
-import { InventoryService } from './services/InventoryService';
+import { CatalogService } from './services/CatalogService';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { SettingsComponent } from './page/settings/settings.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CatalogComponent } from './page/settings/catalog/catalog.component';
+import { InventoryComponent } from './page/inventory/inventory.component';
 import { AddItemComponent } from './page/inventory/add-item/add-item.component';
 
 @NgModule({
@@ -19,7 +23,8 @@ import { AddItemComponent } from './page/inventory/add-item/add-item.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    InventoryComponent,
+    SettingsComponent,
+    CatalogComponent,
     AddItemComponent
   ],
   imports: [
@@ -27,16 +32,20 @@ import { AddItemComponent } from './page/inventory/add-item/add-item.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MatTableModule,
+    MatSortModule,
     MatDialogModule,
+    MatTabsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Inventory', component: InventoryComponent}
+      { path: 'Inventory', component: InventoryComponent },
+      { path: 'Settings', component: SettingsComponent }
     ])
   ],
   providers: [
-    InventoryService
+    CatalogService
   ],
   bootstrap: [AppComponent]
 })

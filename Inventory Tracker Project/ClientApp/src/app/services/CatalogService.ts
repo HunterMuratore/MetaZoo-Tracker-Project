@@ -7,19 +7,18 @@ import { Observable } from "rxjs";
   providedIn: 'root',
 })
 
-export class InventoryService {
-
+export class CatalogService {
   controllerUrl: string;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.controllerUrl = baseUrl + 'api/Inventory';
+    this.controllerUrl = baseUrl + 'api/Catalog';
   }
 
-  getItems() : Observable<MetaZooItem[]> {
+  getItems(): Observable<MetaZooItem[]> {
     return this.http.get<MetaZooItem[]>(this.controllerUrl);
   }
 
-  addItem(item: MetaZooItem) : Observable<HttpResponse<Object>> {
+  addItem(item: MetaZooItem): Observable<HttpResponse<Object>> {
     return this.http.post(this.controllerUrl, item, { responseType: "json", observe: "response" });
   }
 }

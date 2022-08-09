@@ -1,39 +1,39 @@
 ﻿using Inventory_Tracker_Project.Controllers;
-using Inventory_Tracker_Project.Enums;
-using Inventory_Tracker_Project.Interfaces;
-using Inventory_Tracker_Project.Models;
+using Inventory_Tracker_Project.Enums.Catalog;
+using Inventory_Tracker_Project.Interfaces.Repositories;
+using Inventory_Tracker_Project.Models.Catalog;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 
 namespace Inventory_Tracker_Project_Tests.Controllers
 {
-    public class InventoryControllerTests
+    public class CatalogControllerTests
     {
-        private readonly MetaZooItem _item = new MetaZooItem(
-            MetaZooItemType.Card,
+        private readonly CatalogItem _item = new CatalogItem(
+            CatalogItemType.Card,
             "Test card",
             "Test edition",
             DateTime.Now,
             3);
 
-        private Mock<IInventoryRepository> _mockRepository;
-        private InventoryController _controller;
+        private Mock<ICatalogRepository> _mockRepository;
+        private CatalogController _controller;
 
         [SetUp]
         public void SetUp()
         {
-            _mockRepository = new Mock<IInventoryRepository>();
+            _mockRepository = new Mock<ICatalogRepository>();
 
-            _controller = new InventoryController(_mockRepository.Object);
+            _controller = new CatalogController(_mockRepository.Object);
         }
 
         [Test]
-        public async Task GetItems_NoItems_ReturnsOkNoItems()
+        public async Task GetItemsAsync_NoItems_ReturnsOkNoItems()
         {
-            var expectedItems = new List<MetaZooItem>();
+            var expectedItems = new List<CatalogItem>();
 
-            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<MetaZooItem>)expectedItems));
+            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<CatalogItem>)expectedItems));
 
             var result = await _controller.GetItemsAsync();
 
@@ -44,11 +44,11 @@ namespace Inventory_Tracker_Project_Tests.Controllers
         }
 
         [Test]
-        public async Task GetItems_HasItem_ReturnsOkWithItem()
+        public async Task GetItemsAsync_HasItem_ReturnsOkWithItem()
         {
-            var expectedItems = new List<MetaZooItem> { _item };
+            var expectedItems = new List<CatalogItem> { _item };
 
-            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<MetaZooItem>)expectedItems));
+            _mockRepository.Setup(x => x.GetAsync()).Returns(Task.FromResult((IEnumerable<CatalogItem>)expectedItems));
 
             var result = await _controller.GetItemsAsync();
 
