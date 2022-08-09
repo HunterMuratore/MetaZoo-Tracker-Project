@@ -7,10 +7,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { InventoryService } from './services/InventoryService';
+import { CatalogService } from './services/CatalogService';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SettingsComponent } from './page/settings/settings.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CatalogComponent } from './page/settings/catalog/catalog.component';
@@ -28,7 +29,9 @@ import { InventoryComponent } from './page/inventory/inventory.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     MatTableModule,
+    MatSortModule,
     MatDialogModule,
     MatTabsModule,
     BrowserAnimationsModule,
@@ -39,7 +42,7 @@ import { InventoryComponent } from './page/inventory/inventory.component';
     ])
   ],
   providers: [
-    InventoryService
+    CatalogService
   ],
   bootstrap: [AppComponent]
 })
