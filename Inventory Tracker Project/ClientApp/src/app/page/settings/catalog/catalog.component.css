@@ -1,3 +1,17 @@
+#add-item-col {
+  display: flex;
+  justify-content: right;
+}
+
+.add-item {
+  background-color: dimgray;
+  width: 200px;
+  font-size: 20px;
+  padding: 10px;
+  border: 3px solid black;
+  color: white;
+}
+
 .items-table {
   width: 100%;
 }

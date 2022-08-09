@@ -1,0 +1,27 @@
+<style>
+  h2 {
+    text-align: center;
+    position: fixed;
+    top: 15%;
+  }
+  form { text-align: center; }
+</style>
+
+<div class="popup-container">
+  <h2>Enter the details of your item</h2>
+  <div class="popup">
+    <form method="GET">
+        Type:
+        <select name="type">
+          <option value="box" name="box">Box</option>
+          <option value="card" name="card">Card</option>
+        </select><br /><br />
+        Name: <input type="text" name="name" /><br /><br />
+        Edition: <input type="text" name="edition" /><br /><br />
+        Purchase Price: <input type="text" name="purchase-price" /><br /><br />
+        Quantity: <input type="text" name="quantity" /><br /><br />
+      <input type="submit" value="Add Item" />
+      <input type="reset" />
+    </form>
+  </div>
+</div>

@@ -1,6 +1,14 @@
-<h1>Inventory</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Catalog</h2>
+    </div>
+    <div id="add-item-col" class="col">
+      <button class="add-item" (click)="addItem()">Add Item</button>
+    </div>
+  </div>
+</div>
 
-<div>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 items-table">
 
   <ng-container matColumnDef="name">
@@ -26,4 +34,3 @@
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 </table>
-</div>
