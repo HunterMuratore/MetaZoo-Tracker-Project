@@ -16,7 +16,7 @@ import { SettingsComponent } from './page/settings/settings.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CatalogComponent } from './page/settings/catalog/catalog.component';
 import { InventoryComponent } from './page/inventory/inventory.component';
-import { AddItemComponent } from './page/inventory/add-item/add-item.component';
+import { AddItemComponent } from './page/settings/catalog/add-item/add-item.component';
 
 @NgModule({
   declarations: [
