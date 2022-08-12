@@ -1,3 +1,15 @@
+h2 {
+  text-align: center;
+  position: fixed;
+  top: 15%;
+}
+
+form {
+  text-align: center;
+  height: 80%;
+  padding: 10px;
+}
+
 .popup-container {
   position: fixed;
   top: 10%;
@@ -17,7 +29,16 @@
   background-color: white;
 }
 
-.close-popup {
-  position: fixed;
-  left: 65%;
+.footer {
+  height: 20%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+#close {
+  justify-self: center;
+  height: 35px;
+  width: 60px;
+  margin-right: 10px;
 }
