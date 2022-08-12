@@ -15,10 +15,6 @@ namespace Inventory_Tracker_Project.Repositories.Catalog
             _collection = mongo.GetCollection<CatalogItem>(COLLECTION_NAME);
         }
 
-        /// <summary>
-        /// Gets all MetaZoo catalog items in the database
-        /// </summary>
-        /// <returns>A task with result being a collection of MetaZoo catalog items</returns>
         public async Task<IEnumerable<CatalogItem>> GetAsync()
         {
             var queryResult = await _collection.FindAsync<CatalogItem>(FilterDefinition<CatalogItem>.Empty);

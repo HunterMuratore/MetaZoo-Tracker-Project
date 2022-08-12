@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { SettingsComponent } from './page/settings/settings.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CatalogComponent } from './page/settings/catalog/catalog.component';
 import { InventoryComponent } from './page/inventory/inventory.component';
+import { AddItemComponent } from './page/settings/catalog/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,14 @@ import { InventoryComponent } from './page/inventory/inventory.component';
     NavMenuComponent,
     HomeComponent,
     SettingsComponent,
-    CatalogComponent
+    CatalogComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
