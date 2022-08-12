@@ -14,13 +14,13 @@
   <div class="popup">
     <form ngForm #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       Type: <select name="type" ngModel>
-        <option value=0>Box</option>
-        <option value=1>Card</option>
+        <option value="0">Box</option>
+        <option value="1">Card</option>
       </select><br /><br />
       Name: <input type="text" name="name" ngModel /><br /><br />
       Edition: <input type="text" name="edition" ngModel /><br /><br />
-      Release Date: <input type="date" name="release-date" ngModel /><br /><br />
-      Print Run: <input type="text" name="print-run" ngModel /><br /><br />
+      Release Date: <input type="date" name="releaseDate" ngModel /><br /><br />
+      Print Run: <input type="text" name="printRun" ngModel /><br /><br />
       <input id="addItem" type="submit" value="Add Item" />
       <button id="close" class="close-popup" ng-click="onClose()">Close</button>
     </form>
