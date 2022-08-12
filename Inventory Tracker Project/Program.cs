@@ -1,10 +1,9 @@
 using Inventory_Tracker_Project.Interfaces.Repositories;
 using Inventory_Tracker_Project.Repositories.Catalog;
+using Inventory_Tracker_Project.Services.Background;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args); // Create new web app
-
-// Add services to the containers
 
 // Assigns the MongoDB keys from appsettings.json as strings
 var mongoHost = builder.Configuration.GetValue<string>("MongoDB:Host");
@@ -18,6 +17,9 @@ builder.Services.AddSingleton(mongoDatabase);
 
 // Adds repositories
 builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+
+// Add background services
+builder.Services.AddHostedService<PriceCheckerService>();
 
 builder.Services.AddControllersWithViews();
 
