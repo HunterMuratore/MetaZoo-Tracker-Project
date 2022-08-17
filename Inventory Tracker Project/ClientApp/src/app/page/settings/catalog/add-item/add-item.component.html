@@ -10,10 +10,10 @@
       Edition: <input type="text" name="edition" ngModel /><br /><br />
       Release Date: <input type="date" name="releaseDate" ngModel /><br /><br />
       Print Run: <input type="text" name="printRun" ngModel /><br /><br />
-      <input id="addItem" type="submit" value="Add Item" />
+      <input id="addItem" type="submit" value="Add Item" [mat-dialog-close]/>
     </form>
     <div class="footer">
-      <button id="close" ng-click="onClose()">Close</button>
+      <button type="button" id="close" ng-click="onClose()" [mat-dialog-close]>Close</button>
     </div>
   </div>
 </div>
