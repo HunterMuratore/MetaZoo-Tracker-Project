@@ -24,9 +24,6 @@ export class AddItemComponent implements OnInit {
     var formValues = form.value as MetaZooItem;
     this.catalogService.addItem(formValues).subscribe();
     form.reset();
-  }
-
-  onClose() {
     window.location.reload();
   }
 }
