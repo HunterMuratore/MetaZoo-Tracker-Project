@@ -9,7 +9,7 @@
       Name: <input type="text" name="name" required ngModel /><br /><br />
       Edition: <input type="text" name="edition" required ngModel /><br /><br />
       Release Date: <input type="date" name="releaseDate" required ngModel /><br /><br />
-      Print Run: <input type="text" name="printRun" value="1" ngModel /><br /><br />
+      Print Run: <input type="text" name="printRun" placeholder="Leave empty if unknown" ngModel /><br /><br />
       <input id="addItem" type="submit" value="Add Item" [disabled]="!myForm.form.valid" />
     </form>
     <div class="footer">
