@@ -12,7 +12,7 @@ import { CatalogService } from '../../../../services/CatalogService';
 })
 export class AddItemComponent implements OnInit {  
 
-  constructor(private catalogService: CatalogService, public dialogRef: MatDialogRef<AddItemComponent>) { }
+  constructor(private catalogService: CatalogService, private dialogRef: MatDialogRef<AddItemComponent>) { }
 
   ngOnInit(): void {
   }
