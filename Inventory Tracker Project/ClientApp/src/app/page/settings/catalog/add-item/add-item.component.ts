@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MetaZooItem } from '../../../../models/MetaZooItem';
 import { CatalogService } from '../../../../services/CatalogService';
+import { ObjectId } from 'bson';
 
 
 @Component({
@@ -27,6 +28,6 @@ export class AddItemComponent implements OnInit {
     var formValues = form.value as MetaZooItem;
     this.catalogService.addItem(formValues).subscribe();
     form.reset();
-    window.location.reload();
+    //window.location.reload();
   }
 }
