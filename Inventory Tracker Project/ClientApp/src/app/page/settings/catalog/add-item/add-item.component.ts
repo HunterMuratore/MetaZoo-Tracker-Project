@@ -18,9 +18,12 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     form.value.type = parseInt(form.value.type);
-    form.value.printRun = parseInt(form.value.printRun);
+    if (form.value.printRun == '') {
+      form.value.printRun = 0;
+    } else {
+      form.value.printRun = parseInt(form.value.printRun);
+    }
     var formValues = form.value as MetaZooItem;
     this.catalogService.addItem(formValues).subscribe();
     form.reset();
