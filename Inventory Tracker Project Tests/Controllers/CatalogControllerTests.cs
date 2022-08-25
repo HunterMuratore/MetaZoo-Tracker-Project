@@ -65,7 +65,7 @@ namespace Inventory_Tracker_Project_Tests.Controllers
 
             _mockRepository.Verify(x => x.InsertItemAsync(_item), Times.Never());
         }
-        
+
         [Test]
         public async Task AddItemAsync_HasItem_ReturnsInsertItemOk()
         {
