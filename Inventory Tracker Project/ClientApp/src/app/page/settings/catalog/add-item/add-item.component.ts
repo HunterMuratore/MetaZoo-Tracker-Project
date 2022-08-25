@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MetaZooItem } from '../../../../models/MetaZooItem';
 import { CatalogService } from '../../../../services/CatalogService';
 
@@ -11,7 +12,7 @@ import { CatalogService } from '../../../../services/CatalogService';
 })
 export class AddItemComponent implements OnInit {  
 
-  constructor( private catalogService: CatalogService ) { }
+  constructor(private catalogService: CatalogService, private dialogRef: MatDialogRef<AddItemComponent>) { }
 
   ngOnInit(): void {
   }
@@ -22,9 +23,7 @@ export class AddItemComponent implements OnInit {
     form.value.printRun = parseInt(form.value.printRun);
     var formValues = form.value as MetaZooItem;
     this.catalogService.addItem(formValues).subscribe();
-  }
-
-  onClose() {
-
+    form.reset();
+    window.location.reload();
   }
 }
