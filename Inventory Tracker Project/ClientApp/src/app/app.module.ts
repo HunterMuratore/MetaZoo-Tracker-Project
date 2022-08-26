@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CatalogComponent } from './page/settings/catalog/catalog.component';
 import { InventoryComponent } from './page/inventory/inventory.component';
 import { AddItemComponent } from './page/settings/catalog/add-item/add-item.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddItemComponent } from './page/settings/catalog/add-item/add-item.comp
     MatSortModule,
     MatDialogModule,
     MatTabsModule,
+    MatPaginator,
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

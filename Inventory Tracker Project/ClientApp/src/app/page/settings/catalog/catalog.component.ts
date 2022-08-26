@@ -5,6 +5,7 @@ import { CatalogService } from '../../../services/CatalogService';
 import { AddItemComponent } from './add-item/add-item.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-catalog',
@@ -17,6 +18,7 @@ export class CatalogComponent implements OnInit, AfterViewInit {
   columnsToDisplay = ['name', 'edition', 'releaseDate', 'printRun'];
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
+  @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator();
 
   constructor(private catalogService: CatalogService, private dialogRef: MatDialog) {  }
 
@@ -28,6 +30,7 @@ export class CatalogComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   addItem() {
