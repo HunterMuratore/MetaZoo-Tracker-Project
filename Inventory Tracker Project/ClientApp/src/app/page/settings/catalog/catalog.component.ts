@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class CatalogComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<MetaZooItem> = new MatTableDataSource();
-  columnsToDisplay = ['name', 'edition', 'releaseDate', 'printRun'];
+  columnsToDisplay = ['set', 'name', 'edition', 'releaseDate', 'printRun'];
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 

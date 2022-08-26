@@ -6,9 +6,10 @@ namespace Inventory_Tracker_Project.Models.Catalog
     [BsonIgnoreExtraElements]
     public class CatalogItem
     {
-        public CatalogItem(CatalogItemType type, string name, string edition, DateTime releaseDate, int printRun)
+        public CatalogItem(CatalogItemType type, string set,string name, string edition, DateTime releaseDate, int printRun)
         {
             Type = type;
+            Set = set;
             Name = name;
             Edition = edition;
             ReleaseDate = releaseDate;
@@ -16,6 +17,7 @@ namespace Inventory_Tracker_Project.Models.Catalog
         }
 
         public CatalogItemType Type { get; }
+        public string Set { get; }
         public string Name { get; }
         public string Edition { get; }
         public DateTime ReleaseDate { get; }
