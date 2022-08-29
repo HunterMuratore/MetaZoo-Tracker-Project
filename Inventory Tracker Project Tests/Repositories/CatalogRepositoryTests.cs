@@ -11,6 +11,7 @@ namespace Inventory_Tracker_Project_Tests.Repositories
     {
         private readonly CatalogItem _item = new CatalogItem(
             CatalogItemType.Card,
+            "Test set",
             "Test card",
             "Test edition",
             DateTime.Now,
